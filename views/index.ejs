@@ -5,13 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .myborder{
+      border: 2px solid black;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
 </head>
 <body>
   
   <%- include("partials/header.ejs") %>
 
     <h1>Home Page</h1>
-  
+    <img src="/public/images/cat.jpeg " class="myborder" alt="">
+    <img src="<%=imgP%>" class="myborder" alt="">  
     <p>
       Certainly! Let’s dive into the wonderful world of blogs. 🌟
   

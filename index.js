@@ -9,9 +9,9 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 let blogs = [];
-let names = [];
+let names =[];
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs",{imgP :'/public/images/world.jpg'});
 });
 
 
