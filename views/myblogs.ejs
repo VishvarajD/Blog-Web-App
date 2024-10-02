@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+
+    <h1>All Blogs</h1>
+    
+    <% names.forEach((n,i) =>{ %>
+        <ul>
+            
+            <% blogs.forEach((b,i) => { %>
+                <ul>
+                    <li> <%= i+1 %>....
+                        <span class="makeB"><%= n %> </span><br>
+                       
+                        <%= b %>
+                    </li>
+                </ul>
+                
+           <%  }); %>
+            
+        </ul>
+
+
+    <% })  %>
+    <script>
+        
+    </script>
+    
+   
+</body>
+</html>
