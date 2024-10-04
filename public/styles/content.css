@@ -1,12 +1,14 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  /* background-color: #1E3E62; */
 }
 
 header,
@@ -25,7 +27,8 @@ h1 {
 }
 
 p {
-  color: grey;
+  color: rgb(0, 0, 0);
+  font-size: larger;
 }
 
 .profile {

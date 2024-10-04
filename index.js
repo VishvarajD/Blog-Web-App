@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 let blogs = [];
 let names =[];
 app.get("/", (req, res) => {
-  res.render("index.ejs",{imgP :'/public/images/world.jpg'});
+  res.render("index.ejs",{imgP :'/images/world.jpg'});
 });
 
 
