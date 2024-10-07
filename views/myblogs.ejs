@@ -21,24 +21,24 @@
 
         
         <% names.forEach((n,i) =>{ %>
-            <!-- <ul> -->
+           <ul>
+
+               <span class="makeB"><%= n %> </span><br>
+            </ul>
+    
+            <% blogs.forEach((b,index) => { %>
+                <ul>
+                    <% if(index==i) {%>
+                    <!-- <li> -->
+                         <%= i+1 %>....
+                        
+                        <%= b %>
+                    <!-- </li> -->
+                </ul>
+                <% } %>
                 
-                <% blogs.forEach((b,i) => { %>
-                    <ul>
-                        <!-- <li> -->
-                             <%= i+1 %>....
-                            <span class="makeB"><%= n %> </span><br>
-                            
-                            <%= b %>
-                        <!-- </li> -->
-                    </ul>
-                    
-                    <%  }); %>
-                    
-                <!-- </ul> -->
-                
-                
-                <% })  %>
+                <%  }); %>
+            <% })  %>
             </div>
    
     
