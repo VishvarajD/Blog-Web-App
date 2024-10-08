@@ -14,5 +14,6 @@
     "ejs": "^3.1.9",
     "express": "^4.21.0"
   },
-  "description": ""
+  "description": "BLOG WEB APPLICATION <br>\r One can write and read blogs here <br>\r Made with html,css,javascript,node.js,express.js,ejs <br>\r Website Link :-",
+  "devDependencies": {}
 }
