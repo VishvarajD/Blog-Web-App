@@ -1,5 +1,12 @@
-import bodyParser from "body-parser";
-import express from "express";
+const bodyParser = require("body-parser") ;
+const express  = require("express") ;
+const dotenv  = require('dotenv');
+const connectDB = require('./config/connectDB')
+
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
 const port = 3000;
