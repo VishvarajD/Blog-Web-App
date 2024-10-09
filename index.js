@@ -1,12 +1,25 @@
 const bodyParser = require("body-parser") ;
 const express  = require("express") ;
 const dotenv  = require('dotenv');
-const connectDB = require('./config/connectDB')
+const mongoose = require('mongoose');
+// const connectDB = require('./config/connectDB')
 
 
 dotenv.config();
 
-connectDB();
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.mongo_url)
+        console.log(`DB Connected`);
+        
+    } catch (error) {
+        console.log(`Error while connecting db ${error}`);
+        
+        
+    }
+    
+}
+connectDB()
 
 const app = express();
 const port = 3000;
