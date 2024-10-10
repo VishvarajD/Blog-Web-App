@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser") ;
 const express  = require("express") ;
 const dotenv  = require('dotenv');
+const params = require('params');
 const mongoose = require('mongoose');
 // const connectDB = require('./config/connectDB')
 
@@ -22,18 +23,37 @@ const connectDB = async () => {
 connectDB()
 
 const app = express();
-const port = 3000;
+const port = 3211;
 
 app.use(express.static("public"));
 app.set('view engine','ejs'); 
 app.use(bodyParser.urlencoded({extended:true}));
 
 let blogs = [];
+let blogsinfo = [];
 let names =[];
 app.get("/", (req, res) => {
   res.render("index.ejs",{imgP :'/images/world.jpg'});
 });
 
+app.get('/blogs/:id', (req, res) => {
+  const blogId = req.params.id;
+  const newBlog1 = req.body.textarea;
+  const newName1 = req.body.title;
+  blogs.push[newBlog1];
+  names.push[newName1];
+    
+
+  if (blogId >= 0 && blogId < blogs.length) {
+      const blogContent = blogs[blogId];
+      const BlogName = names[blogId];
+      console.log(blogContent);
+      
+      res.render('readBlogs.ejs', {blog:blogContent,name1:BlogName});
+  } else {
+     res.status(404).send("Blog not found");
+  }
+});
 
 
 app.get("/myBlogs", (req, res) => {
