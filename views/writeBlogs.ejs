@@ -12,7 +12,11 @@
   <h1>Blog?</h1>
   <form action="/submit" method="post">
     <input name="title" type="text" class="form-name" required placeholder="Title of Blog" />
-    <!-- <input name="email" type="text" class="feedback-input" placeholder="Email" />  -->
+    <div class="image-name text-center">
+    <label for="blogImage">Upload Image:</label> 
+    <input type="file" id="blogImage" name="blogImage" accept="image/*" required>
+    </div>
+    <!-- <input name="email" type"text" class="feedback-input" placeholder="Email" />  -->
     <textarea name="textarea" class="feedback-input" placeholder="Write your blog here"  required></textarea>
     <!-- <input name="textarea" type="text"  class="feedback-input"   placeholder=""> -->
     <!-- <a href="/submit"> Submit<input  type="submit" value="SUBMIT" /></a> -->

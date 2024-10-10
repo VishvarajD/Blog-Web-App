@@ -42,7 +42,6 @@ app.get('/blogs/:id', (req, res) => {
   const newName1 = req.body.title;
   blogs.push[newBlog1];
   names.push[newName1];
-    
 
   if (blogId >= 0 && blogId < blogs.length) {
       const blogContent = blogs[blogId];

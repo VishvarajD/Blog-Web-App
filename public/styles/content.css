@@ -86,3 +86,12 @@ textarea {
 ul{
   text-decoration: none;
 }
+.image-name{
+  border: 3px solid rgb(3, 73, 171);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 500px;
+  margin-left: 400px;
+  padding: 15px;
+  
+}
