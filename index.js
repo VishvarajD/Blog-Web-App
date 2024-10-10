@@ -3,6 +3,7 @@ const express  = require("express") ;
 const dotenv  = require('dotenv');
 const params = require('params');
 const mongoose = require('mongoose');
+const multer = require('multer');
 // const connectDB = require('./config/connectDB')
 
 
@@ -32,6 +33,20 @@ app.use(bodyParser.urlencoded({extended:true}));
 let blogs = [];
 let blogsinfo = [];
 let names =[];
+let images= [];
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'public/uploads/');  // Specify the directory for storing images
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));  // Create unique file names
+  }
+});
+
+// Initialize multer with the storage options
+const upload = multer({ storage: storage });
+
+
 app.get("/", (req, res) => {
   res.render("index.ejs",{imgP :'/images/world.jpg'});
 });
@@ -40,15 +55,18 @@ app.get('/blogs/:id', (req, res) => {
   const blogId = req.params.id;
   const newBlog1 = req.body.textarea;
   const newName1 = req.body.title;
+  const newImage1 = req.body.blogImage;
+  images.push[newImage1];
   blogs.push[newBlog1];
   names.push[newName1];
 
   if (blogId >= 0 && blogId < blogs.length) {
       const blogContent = blogs[blogId];
       const BlogName = names[blogId];
+      const blogImg = images[blogId];
       console.log(blogContent);
       
-      res.render('readBlogs.ejs', {blog:blogContent,name1:BlogName});
+      res.render('readBlogs.ejs', {blog:blogContent,name1:BlogName,img1:blogImg});
   } else {
      res.status(404).send("Blog not found");
   }
@@ -56,7 +74,7 @@ app.get('/blogs/:id', (req, res) => {
 
 
 app.get("/myBlogs", (req, res) => {
-  res.render("myblogs.ejs",{blogs,names});
+  res.render("myblogs.ejs",{blogs,names,images});
 });
 
 app.get("/writeBlogs", (req, res) => {
@@ -67,12 +85,16 @@ app.get("/submit", (req, res) => {
   res.render("myBlogs.ejs");
 });
 
-app.post("/submit" , (req,res) => {
+app.post("/submit" , upload.single('blogImage'), (req,res) => {
+
   const newBlog = req.body.textarea;
   let newTitle = req.body.title;
+  const newImg = req.body.file;
   newTitle = newTitle.toUpperCase();
+  images.push(newImg);
   names.push(newTitle);
   blogs.push(newBlog);
+  
   res.redirect('/myBlogs');
 });
 
