@@ -31,7 +31,7 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 let blogs = [];
-let blogsinfo = [];
+// let blogsinfo = [];
 let names =[];
 let images= [];
 const storage = multer.diskStorage({
@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
 });
 
 // Initialize multer with the storage options
-const upload = multer({ storage: storage });
+const upload = multer({ storage:storage });
 
 
 app.get("/", (req, res) => {
@@ -55,7 +55,7 @@ app.get('/blogs/:id', (req, res) => {
   const blogId = req.params.id;
   const newBlog1 = req.body.textarea;
   const newName1 = req.body.title;
-  const newImage1 = req.body.blogImage;
+  const newImage1 = req.body.image;
   images.push[newImage1];
   blogs.push[newBlog1];
   names.push[newName1];
@@ -66,7 +66,7 @@ app.get('/blogs/:id', (req, res) => {
       const blogImg = images[blogId];
       console.log(blogContent);
       
-      res.render('readBlogs.ejs', {blog:blogContent,name1:BlogName,img1:blogImg});
+      res.render('readBlogs.ejs', {blog:blogContent,name1:BlogName,img1:blogImg,images});
   } else {
      res.status(404).send("Blog not found");
   }
@@ -82,14 +82,17 @@ app.get("/writeBlogs", (req, res) => {
 });
 
 app.get("/submit", (req, res) => {
-  res.render("myBlogs.ejs");
+  res.render("myblogs.ejs");
 });
 
-app.post("/submit" , upload.single('blogImage'), (req,res) => {
+// upload.single('blogImage'),
+app.post("/submit",upload.single('blogImage'), (req,res) => {
+  console.log();
+  
 
   const newBlog = req.body.textarea;
   let newTitle = req.body.title;
-  const newImg = req.body.file;
+  const newImg = req.body.image;
   newTitle = newTitle.toUpperCase();
   images.push(newImg);
   names.push(newTitle);
