@@ -4,11 +4,10 @@ const dotenv  = require('dotenv');
 const params = require('params');
 const mongoose = require('mongoose');
 const multer = require('multer');
-// const connectDB = require('./config/connectDB')
 
 
 dotenv.config();
-
+//connecting database
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.mongo_url)
@@ -16,12 +15,34 @@ const connectDB = async () => {
         
     } catch (error) {
         console.log(`Error while connecting db ${error}`);
-        
-        
-    }
+        }
     
 }
-connectDB()
+// created a schema 
+// const tutSchema = new mongoose.Schema({
+//   blogName:{
+//     type:String,
+//     required:true
+//   },
+//   blogContent:{
+//     type:String,
+//     required:true
+//   },
+//   blogImg:{
+//     type:String,
+//     required:true
+//   }
+// })
+// //created a collection by 
+// const collection = new mongoose.model('collect',tutSchema)
+connectDB();
+// data={
+//  blogName: 'new',
+//   blogContent:'new1',
+//   blogImg:'new3'
+// }
+// collection.insertMany([data])
+
 
 const app = express();
 const port = 3211;
@@ -34,6 +55,7 @@ let blogs = [];
 // let blogsinfo = [];
 let names =[];
 let images= [];
+//for storing img
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'public/uploads/');  // Specify the directory for storing images
@@ -97,7 +119,29 @@ app.post("/submit",upload.single('blogImage'), (req,res) => {
   images.push(newImg);
   names.push(newTitle);
   blogs.push(newBlog);
+  const tutSchema = new mongoose.Schema({
+    blogName:{
+      type:String,
+      required:true
+    },
+    blogContent:{
+      type:String,
+      required:true
+    },
+    blogImg:{
+      type:String,
+      required:true
+    }
+  })
+  //created a collection by 
+  const collection = new mongoose.model('collect',tutSchema)
   
+  data={
+    blogName: newTitle,
+     blogContent:newBlog,
+     blogImg:newImg
+   }
+  collection.insertMany([data])
   res.redirect('/myBlogs');
 });
 
