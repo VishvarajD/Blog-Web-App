@@ -5,6 +5,12 @@ const params = require('params');
 const mongoose = require('mongoose');
 const multer = require('multer');
 
+const app = express();
+const port = 3211;
+
+app.use(express.static("public"));
+app.set('view engine','ejs'); 
+app.use(bodyParser.urlencoded({extended:true}));
 
 dotenv.config();
 //connecting database
@@ -15,9 +21,10 @@ const connectDB = async () => {
         
     } catch (error) {
         console.log(`Error while connecting db ${error}`);
-        }
-    
-}
+      }
+      
+    }
+    connectDB();
 // created a schema 
 // const tutSchema = new mongoose.Schema({
 //   blogName:{
@@ -35,7 +42,6 @@ const connectDB = async () => {
 // })
 // //created a collection by 
 // const collection = new mongoose.model('collect',tutSchema)
-connectDB();
 // data={
 //  blogName: 'new',
 //   blogContent:'new1',
@@ -44,12 +50,6 @@ connectDB();
 // collection.insertMany([data])
 
 
-const app = express();
-const port = 3211;
-
-app.use(express.static("public"));
-app.set('view engine','ejs'); 
-app.use(bodyParser.urlencoded({extended:true}));
 
 let blogs = [];
 // let blogsinfo = [];
@@ -108,7 +108,7 @@ app.get("/submit", (req, res) => {
 });
 
 // upload.single('blogImage'),
-app.post("/submit",upload.single('blogImage'), (req,res) => {
+app.post("/submit", upload.single('blogImage'), (req,res) => {
   console.log();
   
 
@@ -134,7 +134,7 @@ app.post("/submit",upload.single('blogImage'), (req,res) => {
     }
   })
   //created a collection by 
-  const collection = new mongoose.model('collect',tutSchema)
+  const collection = new mongoose.model('collects',tutSchema)
   
   data={
     blogName: newTitle,
