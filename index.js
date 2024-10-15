@@ -7,24 +7,25 @@ const multer = require('multer');
 
 const app = express();
 const port = 3211;
+const collection = require('./SchemaModel.js')
 
 app.use(express.static("public"));
 app.set('view engine','ejs'); 
 app.use(bodyParser.urlencoded({extended:true}));
 
-dotenv.config();
-//connecting database
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.mongo_url)
-        console.log(`DB Connected`);
+// dotenv.config();
+// //connecting database
+// const connectDB = async () => {
+//     try {
+//         await mongoose.connect(process.env.mongo_url)
+//         console.log(`DB Connected`);
         
-    } catch (error) {
-        console.log(`Error while connecting db ${error}`);
-      }
+//     } catch (error) {
+//         console.log(`Error while connecting db ${error}`);
+//       }
       
-    }
-    connectDB();
+//     }
+//     connectDB();
 // created a schema 
 // const tutSchema = new mongoose.Schema({
 //   blogName:{
@@ -119,22 +120,22 @@ app.post("/submit", upload.single('blogImage'), (req,res) => {
   images.push(newImg);
   names.push(newTitle);
   blogs.push(newBlog);
-  const tutSchema = new mongoose.Schema({
-    blogName:{
-      type:String,
-      required:true
-    },
-    blogContent:{
-      type:String,
-      required:true
-    },
-    blogImg:{
-      type:String,
-      required:true
-    }
-  })
-  //created a collection by 
-  const collection = new mongoose.model('collects',tutSchema)
+  // const tutSchema = new mongoose.Schema({
+  //   blogName:{
+  //     type:String,
+  //     required:true
+  //   },
+  //   blogContent:{
+  //     type:String,
+  //     required:true
+  //   },
+  //   blogImg:{
+  //     type:String,
+  //     required:true
+  //   }
+  // })
+  // //created a collection by 
+  // const collection = new mongoose.model('collects',tutSchema)
   
   data={
     blogName: newTitle,
